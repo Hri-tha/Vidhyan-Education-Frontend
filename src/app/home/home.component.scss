@@ -1,0 +1,114 @@
+.home-container {
+  display: flex;
+  margin-top: 70px; /* to push content below the fixed navbar */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Stylish font for modern look */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 1s; /* Start fading out after 1 second */
+}
+
+/* Keyframes to fade out */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+  }
+}
+
+
+
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text visibility */
+}
+
+.text-center {
+  z-index: 2; /* Ensures text is above the overlay */
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2); /* Slight transparent background for text */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Adding shadow for more depth */
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  animation: fadeIn 2.5s ease-in-out;
+}
+
+.start-btn {
+  padding: 18px 35px;
+  font-size: 1.4rem;
+  background: #fff;
+  color: #6e8efb;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.start-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: #6e8efb;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.start-btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(110, 142, 251, 0.5); /* Adding focus effect for accessibility */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

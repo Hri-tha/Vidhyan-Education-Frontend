@@ -1,0 +1,48 @@
+   <div class="quiz-container">
+    <h2>Career Assessment Quiz</h2>
+    
+  
+    <div *ngIf="pagedQuestions.length > 0">
+      <div class="question-card" *ngFor="let question of pagedQuestions; let i = index">
+        <h3>{{ (currentPage * pageSize) + i + 1 }}. {{ question.text }}</h3>
+  
+        <div class="options">
+          <button 
+            *ngFor="let option of options"
+            [class.selected]="answers[currentPage * pageSize + i] === option.value"
+            (click)="selectOption(i, option.value)">
+            {{ option.label }}
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="navigation">
+      <button (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
+      
+      <button 
+        *ngIf="!isLastPage()" 
+        (click)="nextPage()" 
+        [disabled]="!allQuestionsAnsweredOnPage()">
+        Next
+      </button>
+  
+      <button 
+        *ngIf="isLastPage()" 
+        class="submit-btn" 
+        (click)="submitQuiz()" 
+        [disabled]="!allQuestionsAnsweredOnPage()">
+        Submit Quiz
+      </button>
+    </div>
+  
+    <div class="progress">
+      <div 
+        class="progress-bar" 
+        [style.width]="progressPercentage + '%'">
+      </div>
+    </div>
+    <p>Page {{ currentPage + 1 }} of {{ Math.ceil(questions.length / pageSize) }}</p>
+  </div>
+  
+  

@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    overflow-x: hidden; /* Force prevent horizontal scroll */
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(135deg, #3b4a94 0%, #5f6bc2 100%); /* Softer gradient to match home */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* reduced padding */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo a {
+    font-size: 22px; /* slightly smaller for balance */
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* reduced gap */
+}
+
+.login-btn,
+.register-btn,
+.logout-btn {
+    background: white;
+    color: #5f6bc2;
+    border: none;
+    padding: 6px 12px; /* slightly smaller padding */
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    font-size: 13px; /* slight adjustment */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.login-btn:hover,
+.register-btn:hover,
+.logout-btn:hover {
+    background: #5f6bc2;
+    color: white;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}

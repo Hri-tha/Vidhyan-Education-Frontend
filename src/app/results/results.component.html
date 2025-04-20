@@ -1,0 +1,24 @@
+
+
+  <div class="results-container">
+    <h2>Your Career Assessment Results</h2>
+  
+    <div class="career-card" *ngFor="let career of topCareers">
+      <h3>{{ career.name }}</h3>
+      <p>Score: {{ career.score }} / {{ maxPossibleScore }}</p>
+      <p>{{ career.description }}</p>
+    </div>
+  
+    <div class="best-career-popup" *ngIf="bestCareer && showPopup">
+      <div class="popup-content">
+        <h3>Congratulations!</h3>
+        <p>Your best career match is:</p>
+        <h2>{{ bestCareer?.name }}</h2>
+        <p>{{ bestCareer?.description }}</p>
+        <button (click)="closePopup()">Close</button>
+      </div>
+    </div>
+  
+    <button class="restart-btn" (click)="takeTestAgain()">Take Test Again</button>
+  </div>
+  
