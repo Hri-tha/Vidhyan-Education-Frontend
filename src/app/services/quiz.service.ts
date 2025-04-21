@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class QuizService {
   private apiUrl = 'https://vidhyan-education-backend.onrender.com/api'; // Update this with your backend URL
-
+  // private apiUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<any[]> {

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = 'https://vidhyan-education-backend.onrender.com/api';
+  // private apiUrl = 'http://localhost:3000/api';
 
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser = this.currentUserSubject.asObservable();
@@ -82,4 +83,14 @@ export class AuthService {
     this.showLoginSubject.next(false);
     this.showRegisterSubject.next(false);
   }
+
+  loginWithGoogle(token: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/google-login`, { token }).pipe(
+      tap((res: any) => {
+        localStorage.setItem('token', res.token);
+        this.currentUserSubject.next(res.user);
+      })
+    );
+  }
+  
 }

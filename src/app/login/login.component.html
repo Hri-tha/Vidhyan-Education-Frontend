@@ -1,4 +1,4 @@
-<div class="login-container">
+  <div class="login-container">
     <h2>Login</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -12,4 +12,10 @@
       <button type="submit">Login</button>
       <p class="error" *ngIf="error">{{ error }}</p>
     </form>
+  
+    <!-- Wrap Google button in a div for spacing -->
+    <div class="google-login-wrapper">
+      <div id="google-button"></div>
+    </div>
   </div>
+  
