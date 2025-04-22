@@ -1,108 +1,177 @@
 :host {
-  display: block;
-  min-height: 100vh;
-  background: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #e0ecff, #f9f9f9);
   font-family: 'Poppins', sans-serif;
+  padding: 10px;
 }
 
 .register-container {
   width: 100%;
-  max-width: 420px;
-  padding: 45px 30px;
-  background: #1e1e1e;
+  max-width: 400px;
+  padding: 30px 20px;
+  background: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
-  color: #f0f0f0;
+  color: #333;
   animation: fadeIn 0.8s ease;
+  position: relative;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .register-container h2 {
-  font-size: 32px;
-  margin-bottom: 25px;
+  font-size: 28px;
+  margin-bottom: 20px;
   font-weight: 700;
+  color: #2c3e50;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   text-align: left;
+  width: 100%;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #aaaaaa;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  background: #2a2a2a;
-  color: #ffffff;
-  font-size: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input::placeholder {
-  color: #777777;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f5f7fa;
+  color: #333;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
-  border-color: #ff4b2b;
-  box-shadow: 0 0 5px #ff4b2b;
+  border-color: #6c63ff;
+  box-shadow: 0 0 6px #6c63ff55;
+  background: #ffffff;
   outline: none;
-  background: #2f2f2f;
 }
 
 .register-button {
   width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  padding: 10px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #6c63ff, #5a54e8);
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
+  box-sizing: border-box;
 }
 
 .register-button:hover {
-  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  background: linear-gradient(135deg, #5a54e8, #6c63ff);
   transform: scale(1.02);
 }
 
 .error {
-  margin-top: 15px;
-  color: #ff6b6b;
-  font-size: 14px;
+  margin-top: 8px;
+  color: #ff4b5c;
+  font-size: 13px;
 }
 
 .login-message {
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
+  color: #555;
 }
 
 .login-message a {
-  color: #007bff;
+  color: #6c63ff;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .login-message a:hover {
   text-decoration: underline;
 }
 
+.divider {
+  text-align: center;
+  margin: 14px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background: #fff;
+  padding: 0 8px;
+  color: #888;
+}
+
+/* === RESPONSIVE FOR MOBILE === */
+@media (max-width: 480px) {
+  .register-container {
+    padding: 20px 15px; // tighter padding
+    border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .register-container h2 {
+    font-size: 24px; // smaller heading
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .register-button {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .error,
+  .login-message {
+    font-size: 12px;
+  }
+
+  .divider span {
+    font-size: 12px;
+    padding: 0 6px;
+  }
+}

@@ -1,4 +1,4 @@
-   <div class="register-container">
+   <!-- <div class="register-container">
     <p class="login-message">
       Already have an account? <a href="/login">Click here to login</a>
     </p>
@@ -87,5 +87,109 @@
   
       <p class="error" *ngIf="error">{{ error }}</p>
     </form>
+  </div>
+   -->
+   <div class="register-container">
+    <p class="login-message">
+      Already have an account? <a href="/login">Click here to login</a>
+    </p>
+  
+    <h2>Create Your Account</h2>
+  
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          placeholder="Enter your full name"
+          required
+          minlength="3"
+          #nameField="ngModel"
+        />
+        <p class="error" *ngIf="nameField.invalid && nameField.touched">
+          Name must be at least 3 characters long.
+        </p>
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          required
+          email
+          #emailField="ngModel"
+        />
+        <p class="error" *ngIf="emailField.invalid && emailField.touched">
+          Please enter a valid email address.
+        </p>
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required
+          minlength="6"
+          #passwordField="ngModel"
+        />
+        <p class="error" *ngIf="passwordField.invalid && passwordField.touched">
+          Password must be at least 6 characters long.
+        </p>
+      </div>
+  
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm your password"
+          required
+          #confirmPasswordField="ngModel"
+        />
+        <p class="error" *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched">
+          Please confirm your password.
+        </p>
+        <p class="error" *ngIf="password !== confirmPassword && confirmPasswordField.touched">
+          Passwords do not match.
+        </p>
+      </div>
+  
+      <button
+        type="submit"
+        class="register-button"
+        [disabled]="registerForm.invalid || password !== confirmPassword"
+      >
+        Register
+      </button>
+  
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+  
+    <!-- Divider -->
+    <div class="divider">
+      <span>OR</span>
+    </div>
+  
+    <!-- Google Register Button -->
+    <div class="google-register-wrapper">
+      <div id="google-register-button"></div>
+    </div>
   </div>
   
