@@ -18,7 +18,7 @@ interface CareerResult {
 export class ResultsComponent implements OnInit {
   topCareers: CareerResult[] = [];
   bestCareer: CareerResult | null = null;
-  maxPossibleScore = 10; // 15 questions * max 2 points each
+  maxPossibleScore = 16; // 15 questions * max 2 points each
   showPopup = true;
 
   constructor(private router: Router) {
