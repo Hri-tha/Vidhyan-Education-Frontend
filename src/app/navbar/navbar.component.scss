@@ -96,3 +96,99 @@ body, html {
     background: #e0a800;
     color: white;
 }
+
+/* Existing styles remain the same */
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+      height: auto;
+      padding: 10px 15px;
+      flex-wrap: wrap;
+    }
+  
+    .logo a {
+      font-size: 18px;
+    }
+  
+    .nav-buttons {
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-top: 5px;
+      width: 100%;
+    }
+  
+    .logo {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  
+    .user-info span {
+      display: none; /* Hide username on mobile */
+    }
+  
+    .profile-pic {
+      width: 25px;
+      height: 25px;
+    }
+  
+    .chatbot-btn,
+    .login-btn,
+    .register-btn,
+    .logout-btn {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+  
+    .logout-btn {
+      margin-left: 0; /* Remove any extra margin */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo a {
+      font-size: 16px;
+    }
+  
+    .logo-img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .nav-buttons {
+      gap: 5px;
+    }
+  
+    /* Hide text in buttons on smallest screens */
+    .chatbot-btn span,
+    .login-btn span,
+    .register-btn span {
+      display: none;
+    }
+  
+    .chatbot-btn::after {
+      content: "🤖";
+    }
+  
+    .login-btn::after {
+      content: "🔑";
+    }
+  
+    .register-btn::after {
+      content: "📝";
+    }
+  
+    .logout-btn {
+      padding: 5px;
+      min-width: auto;
+    }
+  
+    .logout-btn::after {
+      content: "🚪"; /* Add door icon */
+    }
+  
+    .logout-btn span {
+      display: none;
+    }
+  }
