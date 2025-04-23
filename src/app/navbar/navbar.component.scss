@@ -78,3 +78,21 @@ body, html {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.chatbot-btn {
+    background: #ffc107; /* Yellowish color to make it stand out */
+    color: #333;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.chatbot-btn:hover {
+    background: #e0a800;
+    color: white;
+}
