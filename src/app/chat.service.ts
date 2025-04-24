@@ -18,17 +18,17 @@ export class ChatService {
 
   // chat.service.ts
 askQuestion(question: string) {
-  return this.http.post<{ answer: string }>('http://localhost:3000/api/chat', { 
+  return this.http.post<{ answer: string }>('https://vidhyan-education-backend.onrender.com/api/chat', { 
     question 
   });
 }
 
 // Add admin methods
 getAllFAQs() {
-  return this.http.get<any[]>('http://localhost:3000/api/faqs');
+  return this.http.get<any[]>('https://vidhyan-education-backend.onrender.com/api/faqs');
 }
 
 addFAQ(newFAQ: any) {
-  return this.http.post('http://localhost:3000/api/faqs', newFAQ);
+  return this.http.post('https://vidhyan-education-backend.onrender.com/api/faqs', newFAQ);
 }
 }
