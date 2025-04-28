@@ -23,12 +23,28 @@ askQuestion(question: string) {
   });
 }
 
+// // chat.service.ts
+// askQuestion(question: string) {
+//   return this.http.post<{ answer: string }>('http://localhost:3000/api/chat', { 
+//     question 
+//   });
+// }
+
 // Add admin methods
 getAllFAQs() {
   return this.http.get<any[]>('https://vidhyan-education-backend.onrender.com/api/faqs');
 }
 
+// // Add admin methods
+// getAllFAQs() {
+//   return this.http.get<any[]>('http://localhost:3000/api/faqs');
+// }
+
 addFAQ(newFAQ: any) {
   return this.http.post('https://vidhyan-education-backend.onrender.com/api/faqs', newFAQ);
 }
+
+// addFAQ(newFAQ: any) {
+//   return this.http.post('http://localhost:3000/api/faqs', newFAQ);
+// }
 }
