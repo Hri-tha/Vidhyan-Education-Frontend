@@ -192,3 +192,21 @@ body, html {
       display: none;
     }
   }
+
+  .compare-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+  }
+  
+  .compare-btn:hover {
+    background: #388e3c;
+  }
+  

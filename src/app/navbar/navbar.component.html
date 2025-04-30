@@ -8,7 +8,7 @@
   
     <div class="nav-buttons">
       <button class="chatbot-btn" routerLink="/chatbot">Clear Your Doubts 🤖</button>
-  
+      <button class="compare-btn" routerLink="/compare">Compare Colleges 🎓</button>
       <ng-container *ngIf="authService.currentUser | async as user; else guest">
         <div class="user-info">
           <img [src]="user.avatar ? user.avatar : 'Avatar.png'" alt="Profile" class="profile-pic">

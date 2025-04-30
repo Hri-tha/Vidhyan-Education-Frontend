@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { authGuard } from './auth.guard'; // 👉 import the guard
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { CollegeCompareComponent } from './college-compare/college-compare.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chatbot', component: ChatbotComponent},
+  { path: 'compare', component: CollegeCompareComponent},
   { path: '**', redirectTo: '' }
 ];
