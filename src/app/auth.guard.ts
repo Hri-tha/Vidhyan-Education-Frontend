@@ -1,4 +1,4 @@
-// src/app/auth.guard.ts
+// auth.guard.ts
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -10,8 +10,18 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (authService.isAuthenticated()) {
     return true;
   } else {
-    router.navigate(['/login'], { 
-      queryParams: { message: 'Please login to know your best career!' }
+    // Determine custom message based on the target route
+    let message = 'Please login to continue.';
+    if (state.url.includes('quiz')) {
+      message = 'Please login to know your best career!';
+    } else if (state.url.includes('results')) {
+      message = 'Please login to view your results!';
+    } else if (state.url.includes('compare')) {
+      message = 'Please login to compare colleges!';
+    }
+
+    router.navigate(['/login'], {
+      queryParams: { message }
     });
     return false;
   }

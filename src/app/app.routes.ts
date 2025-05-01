@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chatbot', component: ChatbotComponent},
-  { path: 'compare', component: CollegeCompareComponent},
+  { path: 'compare', component: CollegeCompareComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
