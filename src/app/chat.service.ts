@@ -23,7 +23,7 @@ askQuestion(question: string) {
   });
 }
 
-// // chat.service.ts
+//// chat.service.ts
 // askQuestion(question: string) {
 //   return this.http.post<{ answer: string }>('http://localhost:3000/api/chat', { 
 //     question 

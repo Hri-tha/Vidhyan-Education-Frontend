@@ -1,9 +1,27 @@
-<div class="compare-wrapper">
+<!-- <div class="compare-wrapper">
     <h2>Compare Colleges 🎓</h2>
   
     <div class="form-group">
-      <input [(ngModel)]="college1" placeholder="Enter first college name" />
-      <input [(ngModel)]="college2" placeholder="Enter second college name (optional)" />
+      
+<div class="input-group">
+  <input [(ngModel)]="college1" (input)="onCollege1Change()" placeholder="Enter first college name" />
+  <ul *ngIf="filteredColleges1.length" class="suggestions">
+    <li *ngFor="let suggestion of filteredColleges1" (click)="selectCollege1(suggestion)">
+      {{ suggestion }}
+    </li>
+  </ul>
+</div>
+
+<div class="input-group">
+  <input [(ngModel)]="college2" (input)="onCollege2Change()" placeholder="Enter second college name (optional)" />
+  <ul *ngIf="filteredColleges2.length" class="suggestions">
+    <li *ngFor="let suggestion of filteredColleges2" (click)="selectCollege2(suggestion)">
+      {{ suggestion }}
+    </li>
+  </ul>
+</div>
+
+
       <button (click)="compareColleges()">Compare</button>
     </div>
   
@@ -36,6 +54,61 @@
       </div>
     </div>
     </div>
+    <button *ngIf="result" (click)="downloadPDF()">Download College Info</button>
+  </div>
+   -->
+   <div class="compare-wrapper">
+    <h2>Compare Colleges 🎓</h2>
+  
+    <div class="form-group">
+      <div class="input-group" #inputGroup1>
+        <input [(ngModel)]="college1" (input)="onCollege1Change()" placeholder="Enter first college name" />
+        <ul *ngIf="filteredColleges1.length" class="suggestions">
+          <li *ngFor="let suggestion of filteredColleges1" (click)="selectCollege1(suggestion)">
+            {{ suggestion }}
+          </li>
+        </ul>
+      </div>
+  
+      <div class="input-group" #inputGroup2>
+        <input [(ngModel)]="college2" (input)="onCollege2Change()" placeholder="Enter second college name (optional)" />
+        <ul *ngIf="filteredColleges2.length" class="suggestions">
+          <li *ngFor="let suggestion of filteredColleges2" (click)="selectCollege2(suggestion)">
+            {{ suggestion }}
+          </li>
+        </ul>
+      </div>
+  
+      <button (click)="compareColleges()">Compare</button>
+    </div>
+  
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="result" class="results" id="pdfContent">
+      <div *ngIf="isArray(result)" class="college-grid">
+        <div *ngFor="let college of result" class="college-card">
+          <h3>{{ college.name }}</h3>
+          <p><strong>Location:</strong> {{ college.location }}</p>
+          <p><strong>Ranking:</strong> {{ college.ranking }}</p>
+          <p><strong>Fees:</strong> {{ college.fees }}</p>
+          <p><strong>Highest Package:</strong> {{ college.placements?.highest_package }}</p>
+          <p><strong>Average Package:</strong> {{ college.placements?.average_package }}</p>
+          <a [href]="college.website" target="_blank">Visit Website</a>
+        </div>
+      </div>
+  
+      <div *ngIf="!isArray(result)" class="college-card single">
+        <h3>{{ result.name }}</h3>
+        <p><strong>Location:</strong> {{ result.location }}</p>
+        <p><strong>Ranking:</strong> {{ result.ranking }}</p>
+        <p><strong>Fees:</strong> {{ result.fees }}</p>
+        <p><strong>Highest Package:</strong> {{ result.placements?.highest_package }}</p>
+        <p><strong>Average Package:</strong> {{ result.placements?.average_package }}</p>
+        <a [href]="result.website" target="_blank">Visit Website</a>
+      </div>
+    </div>
+  
     <button *ngIf="result" (click)="downloadPDF()">Download College Info</button>
   </div>
   
