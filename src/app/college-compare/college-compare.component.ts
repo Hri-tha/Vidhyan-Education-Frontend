@@ -31,6 +31,7 @@ export class CollegeCompareComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<any[]>('https://vidhyan-education-backend.onrender.com/api/colleges')
+    // this.http.get<any[]>('http://localhost:3000/api/colleges')
       .subscribe({
         next: (data) => {
           this.allColleges = data.map(college => college.name);
@@ -54,6 +55,7 @@ export class CollegeCompareComponent implements OnInit {
     if (this.college2) body.college2 = this.college2;
 
     this.http.post('https://vidhyan-education-backend.onrender.com/api/compare', body).subscribe({
+      // this.http.post('http://localhost:3000/api/compare', body).subscribe({
       next: (res) => {
         this.result = res;
         this.loading = false;

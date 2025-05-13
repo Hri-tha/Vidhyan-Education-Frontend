@@ -85,7 +85,7 @@ export class AuthService {
   }
 
   loginWithGoogle(token: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/google-login`, { token }).pipe(
+    return this.http.post(`${this.apiUrl}/google-login`, { tokenId: token }).pipe(
       tap((res: any) => {
         localStorage.setItem('token', res.token);
         this.currentUserSubject.next(res.user);

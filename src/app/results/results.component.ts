@@ -1,4 +1,3 @@
-
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,26 +17,27 @@ interface CareerResult {
 export class ResultsComponent implements OnInit {
   topCareers: CareerResult[] = [];
   bestCareer: CareerResult | null = null;
-  maxPossibleScore = 16; // 15 questions * max 2 points each
+  maxPossibleScore = 16; // You can calculate this dynamically if needed
   showPopup = true;
 
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras?.state as { results: { topCareers: CareerResult[], bestCareer: CareerResult } };
+  constructor(private router: Router) {}
 
-    if (state && state.results) {
-      this.topCareers = state.results.topCareers;
-      this.bestCareer = state.results.bestCareer;
+  ngOnInit(): void {
+    const state = history.state.results || null;
+
+    if (state && state.top3 && state.best) {
+      this.topCareers = state.top3;
+      this.bestCareer = state.best;
+    } else {
+      console.warn('⚠️ No results found in history.state');
     }
   }
-
-  ngOnInit(): void {}
 
   closePopup(): void {
     this.showPopup = false;
   }
 
   takeTestAgain(): void {
-    this.router.navigate(['/']); // Navigate to the home page
+    this.router.navigate(['/']); // Redirect to home or quiz
   }
 }
