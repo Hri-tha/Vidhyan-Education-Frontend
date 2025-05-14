@@ -1,17 +1,31 @@
-<!-- <div class="chat-container">
+ <!-- <div class="chat-overlay">
+  <div class="chat-header">Chat with Vidhyan</div>
+
+  <div class="chat-container">
     <div class="messages">
-      <div *ngFor="let message of messages" [ngClass]="message.sender">
-        {{ message.text }}
+      <div *ngFor="let msg of messages" [ngClass]="msg.from">
+        <strong *ngIf="msg.from === 'admin'">Hrithik:</strong>
+        <strong *ngIf="msg.from === 'bot'">Bot:</strong>
+        <strong *ngIf="msg.from === 'user'">You:</strong>
+        {{ msg.text }}
       </div>
     </div>
-  
-    <div class="input-area">
-      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Ask about JEE/NEET..." />
-      <button (click)="sendMessage()">Send</button>
+
+    
+    <div *ngIf="showInitialPrompt" class="initial-prompt">
+      <p>Hi, Do you want to connect with Hrithik?</p>
+      <button (click)="onAccept()">Yes</button>
+      <button (click)="onDecline()">No, Thank you</button>
+    </div>
+
+    
+    <div class="input-area" *ngIf="!showInitialPrompt">
+      <input [(ngModel)]="userMessage" [disabled]="!isConnectedToHrithik" placeholder="Type your message..." />
+      <button (click)="sendMessage()" [disabled]="!isConnectedToHrithik">Send</button>
     </div>
   </div>
-   -->
- <div class="chat-overlay">
+</div> -->
+<div class="chat-overlay">
   <div class="chat-header">Chat with Vidhyan</div>
 
   <div class="chat-container">
@@ -32,9 +46,16 @@
     </div>
 
     <!-- Input box -->
-    <div class="input-area" *ngIf="!showInitialPrompt">
+    <div class="input-area" *ngIf="!showInitialPrompt && !chatEnded">
       <input [(ngModel)]="userMessage" [disabled]="!isConnectedToHrithik" placeholder="Type your message..." />
       <button (click)="sendMessage()" [disabled]="!isConnectedToHrithik">Send</button>
+      <button class="end-chat-button" (click)="endChat()">End Chat</button>
+    </div>
+
+    <!-- Download chat -->
+    <div *ngIf="chatEnded" class="download-section">
+      <p>Chat ended. You can download the chat below:</p>
+      <button (click)="downloadChat()">Download Chat</button>
     </div>
   </div>
 </div>

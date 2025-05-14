@@ -1,0 +1,46 @@
+<div *ngIf="isAdmin" class="chat-container admin-chat">
+  <h2 class="chat-title">Admin Chat Dashboard</h2>
+
+  <div class="messages">
+    <h3>User Messages</h3>
+
+    <div *ngIf="userMessages.length === 0">
+      <p>No messages yet.</p>
+    </div>
+
+    <div
+      *ngFor="let msg of userMessages"
+      class="message"
+      [class.selected]="selectedSocketId === msg.socketId"
+      (click)="selectUser(msg.socketId)"
+    >
+      <div *ngIf="msg.message === '[User has requested to connect]'">
+        <strong class="request-message">🔔 Connection Request</strong>
+        <p>User wants to start a chat.</p>
+      </div>
+      <div *ngIf="msg.message !== '[User has requested to connect]'">
+        <strong>User:</strong> {{ msg.message }}
+      </div>
+      <small><strong>ID:</strong> {{ msg.socketId }}</small>
+    </div>
+  </div>
+
+  <!-- Reply Box -->
+  <div class="reply-box" *ngIf="selectedSocketId">
+    <h3>Reply to: {{ selectedSocketId }}</h3>
+    <p class="selected-message">
+      <strong>Selected Message:</strong>
+      {{ getSelectedMessage() }}
+    </p>
+    <textarea
+      [(ngModel)]="reply"
+      placeholder="Type your reply here..."
+      rows="3"
+    ></textarea>
+    <button (click)="sendReply()">Send Reply</button>
+  </div>
+</div>
+
+<div *ngIf="!isAdmin">
+  <p>Access Denied. You are not authorized to view this page.</p>
+</div>

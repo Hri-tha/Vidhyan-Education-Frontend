@@ -1,62 +1,52 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { io, Socket } from 'socket.io-client';
+import { ChatService } from '../chat.service';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.scss'],
-  standalone: true, // ✅ since you're using `imports`
+  standalone: true,
   imports: [CommonModule, FormsModule]
 })
 export class ChatbotComponent implements OnInit, OnDestroy {
-  socket!: Socket;
   messages: { from: 'bot' | 'user' | 'admin', text: string }[] = [];
-  userMessage: string = '';
+  userMessage = '';
   isConnectedToHrithik = false;
   showInitialPrompt = true;
+  chatEnded = false;
+
+  constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-    // this.socket = io('http://localhost:3000', {
-    this.socket = io('https://vidhyan-education-backend.onrender.com', {
-      path: '/socket.io/',
-      transports: ['websocket'],
-      withCredentials: true
-    });
+    this.messages.push({ from: 'bot', text: 'Hi, Do you want to connect with Hrithik?' });
 
-    this.socket.on('connect', () => {
-      console.log('🟢 Connected to server');
-      // Show greeting prompt
-      this.showInitialPrompt = true;
-    });
-
-    this.socket.on('bot:response', (msg: string) => {
+    this.chatService.onBotResponse((msg) => {
       this.messages.push({ from: 'bot', text: msg });
       this.isConnectedToHrithik = true;
     });
 
-    this.socket.on('chat:fromAdmin', (msg: string) => {
+    this.chatService.onAdminReply((msg) => {
       this.messages.push({ from: 'admin', text: msg });
     });
   }
 
   ngOnDestroy(): void {
-    if (this.socket) {
-      this.socket.disconnect();
-    }
+    this.chatService.disconnectSocket();
   }
 
   sendMessage(): void {
     if (!this.userMessage.trim() || !this.isConnectedToHrithik) return;
-
-    this.socket.emit('user:message', this.userMessage);
     this.messages.push({ from: 'user', text: this.userMessage });
+    this.chatService.sendUserMessage(this.userMessage);
     this.userMessage = '';
   }
 
   onAccept(): void {
-    this.socket.emit('user:requestChat');
+    this.chatService.requestChat();
     this.messages.push({ from: 'bot', text: 'Connecting you to Hrithik...' });
     this.showInitialPrompt = false;
   }
@@ -64,5 +54,28 @@ export class ChatbotComponent implements OnInit, OnDestroy {
   onDecline(): void {
     this.messages.push({ from: 'bot', text: 'Thank you, visit again.' });
     this.showInitialPrompt = false;
+  }
+
+  endChat(): void {
+    this.chatService.disconnectSocket();
+    this.isConnectedToHrithik = false;
+    this.chatEnded = true;
+    this.messages.push({ from: 'bot', text: 'You have ended the chat.' });
+  }
+
+  downloadChat(): void {
+    const doc = new jsPDF();
+    const rows = this.messages.map((msg, index) => [
+      index + 1,
+      msg.from === 'user' ? 'You' : msg.from === 'admin' ? 'Hrithik' : 'Bot',
+      msg.text
+    ]);
+
+    autoTable(doc, {
+      head: [['#', 'Sender', 'Message']],
+      body: rows
+    });
+
+    doc.save('chat-history.pdf');
   }
 }

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { authGuard } from './auth.guard'; // 👉 import the guard
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { CollegeCompareComponent } from './college-compare/college-compare.component';
+import { AdminChatComponent } from './admin-chat/admin-chat.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'chatbot', component: ChatbotComponent},
   { path: 'compare', component: CollegeCompareComponent, canActivate: [authGuard] },
+  { path: 'admin-chat', component: AdminChatComponent },
   { path: '**', redirectTo: '' }
 ];

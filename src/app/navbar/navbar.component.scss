@@ -19,12 +19,12 @@ body, html {
 .navbar {
     width: 100%;
     height: 70px;
-    background: linear-gradient(135deg, #3b4a94 0%, #5f6bc2 100%); /* Softer gradient to match home */
+    background: linear-gradient(135deg, #3b4a94 0%, #5f6bc2 100%);
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* reduced padding */
+    padding: 0 20px;
     position: fixed;
     top: 0;
     z-index: 1000;
@@ -32,7 +32,7 @@ body, html {
 }
 
 .logo a {
-    font-size: 22px; /* slightly smaller for balance */
+    font-size: 22px;
     font-weight: bold;
     color: white;
     text-decoration: none;
@@ -41,7 +41,7 @@ body, html {
 .nav-buttons {
     display: flex;
     align-items: center;
-    gap: 10px; /* reduced gap */
+    gap: 10px;
 }
 
 .login-btn,
@@ -50,13 +50,13 @@ body, html {
     background: white;
     color: #5f6bc2;
     border: none;
-    padding: 6px 12px; /* slightly smaller padding */
+    padding: 6px 12px;
     font-weight: bold;
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s;
-    font-size: 13px; /* slight adjustment */
-    white-space: nowrap; /* Prevents text from wrapping */
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .login-btn:hover,
@@ -80,7 +80,7 @@ body, html {
 }
 
 .chatbot-btn {
-    background: #ffc107; /* Yellowish color to make it stand out */
+    background: #ffc107;
     color: #333;
     border: none;
     padding: 6px 12px;
@@ -97,103 +97,7 @@ body, html {
     color: white;
 }
 
-/* Existing styles remain the same */
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    .navbar {
-      height: auto;
-      padding: 10px 15px;
-      flex-wrap: wrap;
-    }
-  
-    .logo a {
-      font-size: 18px;
-    }
-  
-    .nav-buttons {
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      margin-top: 5px;
-      width: 100%;
-    }
-  
-    .logo {
-      width: 100%;
-      margin-bottom: 5px;
-    }
-  
-    .user-info span {
-      display: none; /* Hide username on mobile */
-    }
-  
-    .profile-pic {
-      width: 25px;
-      height: 25px;
-    }
-  
-    .chatbot-btn,
-    .login-btn,
-    .register-btn,
-    .logout-btn {
-      padding: 5px 10px;
-      font-size: 12px;
-    }
-  
-    .logout-btn {
-      margin-left: 0; /* Remove any extra margin */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .logo a {
-      font-size: 16px;
-    }
-  
-    .logo-img {
-      width: 30px;
-      height: 30px;
-    }
-  
-    .nav-buttons {
-      gap: 5px;
-    }
-  
-    /* Hide text in buttons on smallest screens */
-    .chatbot-btn span,
-    .login-btn span,
-    .register-btn span {
-      display: none;
-    }
-  
-    .chatbot-btn::after {
-      content: "🤖";
-    }
-  
-    .login-btn::after {
-      content: "🔑";
-    }
-  
-    .register-btn::after {
-      content: "📝";
-    }
-  
-    .logout-btn {
-      padding: 5px;
-      min-width: auto;
-    }
-  
-    .logout-btn::after {
-      content: "🚪"; /* Add door icon */
-    }
-  
-    .logout-btn span {
-      display: none;
-    }
-  }
-
-  .compare-btn {
+.compare-btn {
     background: #4caf50;
     color: white;
     border: none;
@@ -204,9 +108,117 @@ body, html {
     font-size: 13px;
     white-space: nowrap;
     transition: background 0.3s ease;
-  }
-  
-  .compare-btn:hover {
+}
+
+.compare-btn:hover {
     background: #388e3c;
-  }
-  
+}
+
+/* 🎯 NEW: Admin button style */
+.admin-btn {
+    background: #ff5722; /* Bright orange for admin visibility */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+}
+
+.admin-btn:hover {
+    background: #e64a19;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+
+    .logo a {
+        font-size: 18px;
+    }
+
+    .nav-buttons {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .logo {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .user-info span {
+        display: none;
+    }
+
+    .profile-pic {
+        width: 25px;
+        height: 25px;
+    }
+
+    .chatbot-btn,
+    .compare-btn,
+    .admin-btn,
+    .login-btn,
+    .register-btn,
+    .logout-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 16px;
+    }
+
+    .logo-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav-buttons {
+        gap: 5px;
+    }
+
+    .chatbot-btn span,
+    .login-btn span,
+    .register-btn span {
+        display: none;
+    }
+
+    .chatbot-btn::after {
+        content: "🤖";
+    }
+
+    .login-btn::after {
+        content: "🔑";
+    }
+
+    .register-btn::after {
+        content: "📝";
+    }
+
+    .logout-btn {
+        padding: 5px;
+        min-width: auto;
+    }
+
+    .logout-btn::after {
+        content: "🚪";
+    }
+
+    .logout-btn span {
+        display: none;
+    }
+}

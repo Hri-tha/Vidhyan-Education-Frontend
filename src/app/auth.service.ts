@@ -85,12 +85,14 @@ export class AuthService {
   }
 
   loginWithGoogle(token: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/google-login`, { tokenId: token }).pipe(
-      tap((res: any) => {
-        localStorage.setItem('token', res.token);
-        this.currentUserSubject.next(res.user);
-      })
-    );
-  }
+  return this.http.post(`${this.apiUrl}/google-login`, { tokenId: token }).pipe(
+    tap((res: any) => {
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('userEmail', res.user.email); // ✅ Save user email
+      this.currentUserSubject.next(res.user);
+    })
+  );
+}
+
   
 }
