@@ -9,8 +9,8 @@ export class ChatService {
   private socket: Socket;
 
   constructor(private http: HttpClient) {
-    // this.socket = io('https://vidhyan-education-backend.onrender.com', {
-      this.socket = io('http://localhost:3000', {
+    this.socket = io('https://vidhyan-education-backend.onrender.com', {
+      // this.socket = io('http://localhost:3000', {
       path: '/socket.io/',
       transports: ['websocket'],
       withCredentials: true

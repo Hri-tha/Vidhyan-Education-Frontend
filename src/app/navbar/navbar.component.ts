@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -10,25 +11,24 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   isAdmin: boolean = false;
+  private userSub: Subscription | undefined;
 
   constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
-    const email = localStorage.getItem('userEmail');
-    this.isAdmin = email === 'hrithikkthakurdbg@gmail.com';
-  }
-
-  openLogin() {
-    this.authService.showLoginModal();
-  }
-
-  openRegister() {
-    this.authService.showRegisterModal();
+    this.userSub = this.authService.currentUser.subscribe(user => {
+      const email = user?.email || '';
+      this.isAdmin = email === 'hrithikkthakurdbg@gmail.com';
+    });
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe();
   }
 }

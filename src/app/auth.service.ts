@@ -106,8 +106,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  // private apiUrl = 'https://vidhyan-education-backend.onrender.com/api';
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'https://vidhyan-education-backend.onrender.com/api';
+  // private apiUrl = 'http://localhost:3000/api';
 
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser = this.currentUserSubject.asObservable();
