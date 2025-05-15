@@ -1,9 +1,10 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 64px); // Adjust if your navbar is a different height
+  height: calc(100vh - 90px); // Adjust if your navbar is a different height
   max-width: 700px;
   margin: 0 auto;
+  margin-top: 29px;
   background: #fdfdfd;
   border: 1px solid #e0e0e0;
   border-radius: 16px;
