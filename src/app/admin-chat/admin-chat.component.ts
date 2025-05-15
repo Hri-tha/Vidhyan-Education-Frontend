@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class AdminChatComponent implements OnInit {
-  userMessages: { socketId: string, message: string }[] = [];
+  userMessages: { socketId: string, message: string, userName?: string }[] = [];
   selectedSocketId: string = '';
   reply: string = '';
   isAdmin: boolean = false;
@@ -28,10 +29,17 @@ export class AdminChatComponent implements OnInit {
       this.chatService.onUserMessage(data => {
         const index = this.userMessages.findIndex(msg => msg.socketId === data.socketId);
         if (index === -1) {
-          this.userMessages.push(data); // new user
+          this.userMessages.push({
+            socketId: data.socketId,
+            message: data.message,
+            userName: data.userName || 'User'
+          });
         } else {
-          // replace to trigger Angular update
-          this.userMessages[index] = { ...this.userMessages[index], message: data.message };
+          this.userMessages[index] = { 
+            ...this.userMessages[index], 
+            message: data.message,
+            userName: data.userName || this.userMessages[index].userName
+          };
         }
       });
     }
@@ -49,5 +57,9 @@ export class AdminChatComponent implements OnInit {
 
   getSelectedMessage() {
     return this.userMessages.find(m => m.socketId === this.selectedSocketId)?.message || 'No message selected';
+  }
+
+  getUserName(socketId: string): string {
+    return this.userMessages.find(m => m.socketId === socketId)?.userName || 'User';
   }
 }

@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'results', component: ResultsComponent, canActivate: [authGuard] }, // 🔥 protect results
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'chatbot', component: ChatbotComponent},
+  { path: 'chatbot', component: ChatbotComponent, canActivate: [authGuard]},
   { path: 'compare', component: CollegeCompareComponent, canActivate: [authGuard] },
   { path: 'admin-chat', component: AdminChatComponent },
   { path: '**', redirectTo: '' }

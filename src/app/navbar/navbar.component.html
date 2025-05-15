@@ -1,30 +1,3 @@
-   <!-- <nav class="navbar">
-    <div class="logo">
-      <a routerLink="/">
-        <img src="Logo.png" alt="Logo" class="logo-img" />
-        Vidhyan Education
-      </a>
-    </div>
-  
-    <div class="nav-buttons">
-      <button class="chatbot-btn" routerLink="/chatbot">Clear Your Doubts 🤖</button>
-      <button class="compare-btn" routerLink="/compare">Compare Colleges 🎓</button>
-      <ng-container *ngIf="authService.currentUser | async as user; else guest">
-        <div class="user-info">
-          <img [src]="user.avatar ? user.avatar : 'Avatar.png'" alt="Profile" class="profile-pic">
-          <span>{{ user.name || 'User' }}</span>
-          <button class="logout-btn" (click)="logout()">Logout</button>
-        </div>
-      </ng-container>
-      
-  
-      <ng-template #guest>
-        <button class="login-btn" routerLink="/login">Login 🔑</button>
-        <button class="register-btn" routerLink="/register">Register 📝</button>
-      </ng-template>
-    </div>
-  </nav>
-   -->
   <nav class="navbar">
   <div class="logo">
     <a routerLink="/">

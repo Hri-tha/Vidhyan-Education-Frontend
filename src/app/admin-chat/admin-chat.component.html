@@ -16,10 +16,10 @@
     >
       <div *ngIf="msg.message === '[User has requested to connect]'">
         <strong class="request-message">🔔 Connection Request</strong>
-        <p>User wants to start a chat.</p>
+        <p>{{ msg.userName }} wants to start a chat.</p>
       </div>
       <div *ngIf="msg.message !== '[User has requested to connect]'">
-        <strong>User:</strong> {{ msg.message }}
+        <strong>{{ msg.userName }}:</strong> {{ msg.message }}
       </div>
       <small><strong>ID:</strong> {{ msg.socketId }}</small>
     </div>
@@ -27,7 +27,7 @@
 
   <!-- Reply Box -->
   <div class="reply-box" *ngIf="selectedSocketId">
-    <h3>Reply to: {{ selectedSocketId }}</h3>
+    <h3>Reply to: {{ getUserName(selectedSocketId) }}</h3>
     <p class="selected-message">
       <strong>Selected Message:</strong>
       {{ getSelectedMessage() }}

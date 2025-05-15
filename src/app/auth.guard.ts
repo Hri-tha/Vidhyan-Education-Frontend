@@ -18,6 +18,8 @@ export const authGuard: CanActivateFn = (route, state) => {
       message = 'Please login to view your results!';
     } else if (state.url.includes('compare')) {
       message = 'Please login to compare colleges!';
+    } else if (state.url.includes('chatbot')) {
+      message = 'Please login to use chatbot!';
     }
 
     router.navigate(['/login'], {
